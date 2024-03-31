@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CropMonitor</title>
+    <link rel="stylesheet" href="static/css/style.css">
+    <link rel="stylesheet" media="screen and (max-width:1020px)" href="static/css/phone.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bree+Serif&family=Clicker+Script&family=Montserrat:wght@200;300;400;500;600;700;800;900&family=Poppins:wght@200;300;400;500;600;700;800;900&family=Ubuntu&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <nav id="navbar">
+        <div id="logo">
+            <img src="static/img/cover.png" alt="MyCropMonitor.com">
+        </div>
+
+        <ul>
+            <li class="item"><a href="#home">Home</a></li>
+            <li class="item"><a href="#contoller-container">Controller</a></li>
+            <li class="item"><a href="#model">Model</a></li>
+        </ul>
+    </nav>
+
+    <section id="home">
+        <h1 class="h-primary">Welcome to <span>Raushan kumar Crop Monitor system</span></h1>
+        <p>The web interface of our IoT based Smart Irrigation System for precise water supply to crops! </p>
+        <a href="#contoller-container"><button class="btn">Lets Get Started</button></a>
+    </section>
+
+    <section id="contoller-container">
+        <h1 class="h-primary center">Controller</h1>
+        <div class="container">
+            <form action="/#contoller-container" method="POST">
+                <div class="row">
+                    <div class="col-25">
+                        <label for="country">Crop Type</label>
+                    </div>
+                    <div class="col-75">
+                        <select id="cropType" name="cropType">
+                            <option value="Wheat">Wheat</option>
+                            <option value="Ground Nuts">Ground Nuts</option>
+                            <option value="Garden flowers">Garden flowers</option>
+                            <option value="Maize">Maize</option>
+                            <option value="Paddy">Paddy</option>
+                            <option value="Potato">Potato</option>
+                            <option value="Pulse">Pulse</option>
+                            <option value="SugarCane">Sugar Cane</option>
+                            <option value="Coffee">Coffee</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-25">
+                        <label for="cropdays">Crop Days</label>
+                    </div>
+                    <div class="col-75">
+                        <input type="number" id="cropdays" name="cropdays" placeholder="1.00" step="0.01" min="0" max="1000">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-25">
+                        <label for="moisture">Soil Moisture (DHT11 Reading)</label>
+                    </div>
+                    <div class="col-75">
+                        <input type="number" id="moisture" name="moisture"  placeholder="1.00" step="0.01" min="0" max="1000">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-25">
+                        <label for="temperature">Current Temperature (Celsius)</label>
+                    </div>
+                    <div class="col-75">
+                        <input type="number" id="temperature" name="temperature"  placeholder="1.00" step="0.01" min="0" max="1000">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-25">
+                        <label for="humidity">Current Humidity (Percentage)</label>
+                    </div>
+                    <div class="col-75">
+                        <input type="number" id="humidity" name="humidity"  placeholder="1.00" step="0.01" min="0" max="1000">
+                    </div>
+                </div>
+                <div class="row">
+                    <input type="submit" value="Submit">
+                </div>
+                {% if output == 1%}
+                    <p>
+                        Your crop needs to be irrigated ⚠️
+                    </p>
+                {% elif output == 0 %} 
+                    <p>
+                        Your crop is irrigated ✅
+                    </p>
+
+                {% endif %}
+            </form>
+        </div>
+    </section>
+
+
+    <section id="model">
+        <h1 class="h-primary center">Model</h1>
+        <div class="left">
+            <p> The brain of the system is an Artificial Neural Network that has been designed to predict if or not
+                irrigation is required for a given set of parameters.
+                The architecture of our neural network consists of an input layer with five features, two hidden layers,
+                each with six artificial neurons and an output layer which is a single neuron that gives a probability
+                score of if or not a crop should be irrigated. If the probability score crosses a threshold, the model
+                signals that the crop needs to be irrigated. The architecture diagram of our ANN is as depicted below</p>
+                <div id="image" class="h-primary center">
+                    <img src="static/img/ANN.jpeg" alt="">
+                </div>
+            
+            <p>In a real world scenario, the data is received by the model in real time by the use of three sensors,
+                namely: Temperature sensor, Soil Moisture sensor and Humidity sensor. This realtime data allows the
+                model to generate frequent output in order to keep the crop's water need in check.
+                The real time data will be collected and transmitted by the gateway, which will be a raspberry pi
+                running a web server. The data can then be obtained at the client side (Web interface) over Wi-Fi. This
+                also means that these data values can be monitored at realtime, thus providing us better, faster and
+                reliable means of maintaing crops!</p>
+        </div>
+    </section>
+
+    <footer>
+        <div class="center">
+            Copyright &copy; Raushan kumar All rights reserved!
+        </div>
+    </footer>
+</body>
+
+</html>
